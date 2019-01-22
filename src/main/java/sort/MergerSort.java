@@ -26,7 +26,7 @@ public class MergerSort extends MySortAbstract {
         MySort mySort = new MergerSort();
         mySort.init(100);
         mySort.sort();
-        log.info("排序是否成功= {}", mySort.isSort());
+        log.info("排序是否成功={}", mySort.isSort());
     }
 
     /**
