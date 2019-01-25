@@ -1,4 +1,4 @@
-package sort;
+package sort.mysort;
 
 import com.alibaba.fastjson.JSON;
 import sort.base.MySortAbstract;

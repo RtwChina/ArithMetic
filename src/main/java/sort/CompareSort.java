@@ -7,6 +7,11 @@ import java.time.LocalDateTime;
 import lombok.extern.slf4j.Slf4j;
 import sort.base.ArraysUtil;
 import sort.base.MySort;
+import sort.mysort.InsertSort;
+import sort.mysort.MergerSort;
+import sort.mysort.SelectSort;
+import sort.mysort.ShellSort;
+import sort.mysort.SpeedSort;
 
 /**
  * 算法之间的比较哦
@@ -17,7 +22,7 @@ import sort.base.MySort;
 public class CompareSort {
     public static void main(String[] args) {
         try {
-            CompareSort.MergeAndShell();
+            CompareSort.MergeAndShellAndSpeed();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -61,14 +66,12 @@ public class CompareSort {
         }
     }
 
-    // 希尔算法 和 归并算法
+    // 插入、选择、希尔、归并算法
     public static void MergeAndShell() {
         int N = 1000000; // 数组长度
         StdDraw.setXscale(0, N);
-        StdDraw.setYscale(0, 20000); // 单位为毫秒
+        StdDraw.setYscale(0, 1000); // 单位为毫秒
         StdDraw.setPenRadius(.001);
-
-
         for (int i = 0; i< N ; i += 500) {
             // 先创建一个i长度的数组
             int[] arrays = ArraysUtil.getArray(i);
@@ -79,6 +82,23 @@ public class CompareSort {
             log.info("==========================");
         }
     }
+
+    // 希尔、归并、快速
+    public static void MergeAndShellAndSpeed() {
+        int N = 1000000; // 数组长度
+        StdDraw.setXscale(0, N);
+        StdDraw.setYscale(0, 200); // 单位为毫秒
+        StdDraw.setPenRadius(.001);
+        for (int i = 0; i< N ; i += 500) {
+            // 先创建一个i长度的数组
+            int[] arrays = ArraysUtil.getArray(i);
+            sortAndPointInMillis(ShellSort.class, Color.RED, arrays);
+            sortAndPointInMillis(MergerSort.class, Color.BLACK, arrays);
+            sortAndPointInMillis(SpeedSort.class, Color.BLUE, arrays);
+            log.info("==========================");
+        }
+    }
+
     /**
      * 通过排序算法对相对应的 数组排序、计算时间、绘画
      * @param src

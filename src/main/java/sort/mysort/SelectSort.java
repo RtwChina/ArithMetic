@@ -1,4 +1,4 @@
-package sort;
+package sort.mysort;
 
 import lombok.extern.slf4j.Slf4j;
 import sort.base.MySort;
