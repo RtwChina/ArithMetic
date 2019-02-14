@@ -5,7 +5,7 @@ import java.awt.Color;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import lombok.extern.slf4j.Slf4j;
-import sort.base.ArraysUtil;
+import Base.ArraysUtil;
 import sort.base.MySort;
 import sort.mysort.InsertSort;
 import sort.mysort.MergerSort;

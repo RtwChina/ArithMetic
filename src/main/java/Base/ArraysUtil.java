@@ -1,4 +1,4 @@
-package sort.base;
+package Base;
 
 /**
  * 数组类工具

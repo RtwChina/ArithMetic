@@ -13,8 +13,9 @@ import sort.base.MySortAbstract;
 public class SpeedSort extends MySortAbstract {
 
     public static void main(String[] args) {
-        MySort mySort = new SelectSort();
-        mySort.init(100);
+        MySort mySort = new SpeedSort();
+        int[] a = new int[]{1,3,3,3,3,3,2,3,3,3};
+        mySort.init(a);
         mySort.sort();
         log.info("排序是否成功={}", mySort.isSort());
     }
@@ -24,6 +25,8 @@ public class SpeedSort extends MySortAbstract {
     @Override
     public void sort() {
         sort(arg, 0,size - 1);
+
+//        threeSort(arg, 0,size - 1);
     }
 
     /**
@@ -40,6 +43,39 @@ public class SpeedSort extends MySortAbstract {
         this.sort(a, lo, j -1 );
         // a[j+1]~a[hi]再次进行切分排序
         this.sort(a, j + 1, hi);
+    }
+
+    /**
+     * 快速排序 递归 三分法，可解决当数组有大量的重复元素时的复杂线性对数降到 线性级别
+     */
+    private void threeSort(int[] a, int lo, int hi) {
+        // 递归终止条件，当只有一个数字时直接返回
+        if (hi <= lo ) {
+            return;
+        }
+        int compare = a[lo];
+        int i = lo + 1;
+        // 比切分元素小的下标
+        int lt = lo;
+        // 比切分元素大的下标
+        int ht = hi;
+        while (i <= ht) {
+            if (compare < a[i]) {
+                // 当遇到一个元素大于切分元素时，将该元素放到末尾去，
+                // 然后把末尾的元素放到i的位置上，继续使用i的元素与切分元素判读
+                super.change(i, ht--);
+            } else if (compare > a[i]) {
+                // 当遇到一个元素小于切分元素时，将该元素放到开头去，然后把i和lt走自增
+                super.change(i++, lt++);
+            } else {
+                // 遇到与切分元素相同的情况，只增加i.
+                i++;
+            }
+        }
+        // a[lo] ~ a[j-1]再次进行切分排序
+        this.threeSort(a, lo, lt - 1);
+        // a[j+1]~a[hi]再次进行切分排序
+        this.threeSort(a, ht + 1, hi);
     }
 
     /**
